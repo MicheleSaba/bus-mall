@@ -6,5 +6,7 @@
 img {
     height: 200px; 
     width: 200px; 
-
+}
+img :hover {
+    transform: scale(1.5);
 }

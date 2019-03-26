@@ -10,19 +10,19 @@ As a developer, I want to make sure that the images are of the same height and w
 
 As a marketer, I want to analyze user clicks per image so that I can understamd which products are most appealing to the user. 
 
-As a marketer, I want to know the total times an image was displayed so that I can understand the clicks per views ratio. 
+As a marketer, I want to create a variable that stores the total times an image was displayed so that I can understand the clicks per views ratio. 
 
 As a marker, I would like the images to be of the same size and width, so that one image does artifically influence the clicks. 
 
 As a marketer, I would like the images to display randomly, so that the user gets a random sample of products from the beginning so that the user doesn't tire. 
 
-As a marketer, I would like the website to be easy to be simple and neatly laid out so that the user doesn't become frusterated or distracted by the page. 
+As a marketer, I would like the website to be easy to be simple and neatly laid out so that the user doesn't become frustrated or distracted by the page. 
 
-As a user, I would like the image samples to be displayed on the first page, so that I don;t have to navigate. 
+As a user, I would like the image samples to be displayed on the first page, so that I don't have to navigate. 
 
 As a user, I would like the images to be of good resulotion so that I don't have to strain my eyes while viewing them.  
 
-As I user, i would liek the images to be of a decent size so that i don't have to zoom while viewing them. 
+As I user, i would likk the images to be of a decent size so that I don't have to zoom while viewing them. 
 
 As a user I would like my vote to be tallied with a single click to minimize the amount of effort required to vote. 
 
