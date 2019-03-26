@@ -12,7 +12,7 @@ function RandomImage (name, imageAddress) {
 
 
 
-// var totalClicks = 0; 
+var totalClicks = 0; 
 
 
 
@@ -59,13 +59,16 @@ RandomImage.prototype.render = function() {
 
 
 function handleClick() {
-  console.log('hello');
+  console.log("user clicked!");
+  totalClicks ++
+  console.log(totalClicks);
 }
+var imgTags = document.getElementsByTagName('IMG');
 
 function imageClicks () {
-  var imgTags = document.getElementsByTagName("IMG");
   for (var i=0;i<imgTags.length;i++) {
-    imgTags[i].addEventListener("click", handleClick());
+    imgTags[i].addEventListener("click", handleClick);
+    // console.table(imgTags[i]);
   }
 }
 
