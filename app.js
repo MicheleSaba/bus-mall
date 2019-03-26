@@ -8,6 +8,7 @@ function RandomImage (name, imageAddress) {
 
 var totalClicks = 0; 
 
+
 var randomArray = [
   Bathroom = new RandomImage(' bathroom object ','./img/bathroom.jpg'),
   Banana = new RandomImage(' banana object ','./img/banana.jpg'),
@@ -48,13 +49,16 @@ function makeRandom(){
 
 
 function handleClick() {
-  console.log('hello');
+  console.log("user clicked!");
+  totalClicks ++
+  console.log(totalClicks);
 }
+var imgTags = document.getElementsByTagName('IMG');
 
 function imageClicks () {
-  var imgTags = document.getElementsByTagName("img");
   for (var i=0;i<imgTags.length;i++) {
-    imgTags[i].addEventListener("click", handleClick());
+    imgTags[i].addEventListener("click", handleClick);
+    // console.table(imgTags[i]);
   }
 }
 
