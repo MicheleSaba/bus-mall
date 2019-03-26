@@ -1,20 +1,12 @@
 
 function RandomImage (name, imageAddress) {
   this.name = name; 
-  // this.clicks = clicks; 
+  this.clicks = 0; 
   this.imageAddress = imageAddress;
-  // this.totalViews = totalViews; 
+  this.totalViews = 0; 
 }
 
- //function totalViews() {
-
-// }
-
-
-
-// var totalClicks = 0; 
-
-
+var totalClicks = 0; 
 
 var randomArray = [
   Bathroom = new RandomImage(' bathroom object ','./img/bathroom.jpg'),
@@ -26,35 +18,32 @@ var randomArray = [
   Chair = new RandomImage('chair object ','./img/chair.jpg'),
   Dog = new RandomImage('chair object ','./img/dog-duck.jpg')
 ];
-RandomImage.prototype.render = function() {
+
+function makeRandom(){
+  return Math.floor(Math.random() * randomArray.length);
+}
+
+ function render() {
   // for (var i = 0; i < 3; i++) {
-  var j = Math.floor(Math.random() * randomArray.length);
-  document.body.appendChild(document.createElement('IMG')).src = randomArray[j].imageAddress;
-  var k = Math.floor(Math.random() * randomArray.length);
-  console.log(randomArray[j].imageAddress + j );
-  if (k === j && k !== randomArray.length) {
-    k ++;
+  var randomNumber1 = makeRandom();
+  var randomNumber2 = makeRandom();
+  console.log(randomArray[randomNumber2].imageAddress + randomNumber2 );
+  while (randomNumber1 === randomNumber2) {
+    randomNumber1 = makeRandom();
   }
-  else if (k === j && k !== randomArray.length[0]) {
-    k --;
+  var img1 = document.createElement('img');
+  img1.src = randomArray[randomNumber1].imageAddress;
+  document.body.appendChild(img1);
+  document.body.appendChild(document.createElement('IMG')).src = randomArray[randomNumber2].imageAddress;
+
+  var randomNumber3 = makeRandom();
+  console.log(randomArray[randomNumber1].imageAddress + randomNumber1); 
+  while (randomNumber3 === randomNumber1 || randomNumber3 === randomNumber2) {
+    randomNumber3 = makeRandom();
   }
-  else {
-    k + 2
-  }
-  document.body.appendChild(document.createElement('IMG')).src = randomArray[k].imageAddress;
-  var l = Math.floor(Math.random() * randomArray.length);
-  console.log(randomArray[k].imageAddress + k); 
-  if (l === k || l === j && l !== randomArray.length) {
-    l ++;
-  }
-  else if (l === j || l === k && l !== randomArray.length[0]) {
-    l --; 
-  }
-  else {
-    l = 0;
-  }
-  document.body.appendChild(document.createElement('IMG')).src = randomArray[l].imageAddress;
-  console.log(randomArray[l].imageAddress + l);
+
+  document.body.appendChild(document.createElement('img')).src = randomArray[randomNumber3].imageAddress;
+  console.log(randomArray[randomNumber3].imageAddress);
 }
 
 
@@ -63,15 +52,13 @@ function handleClick() {
 }
 
 function imageClicks () {
-  var imgTags = document.getElementsByTagName("IMG");
+  var imgTags = document.getElementsByTagName("img");
   for (var i=0;i<imgTags.length;i++) {
     imgTags[i].addEventListener("click", handleClick());
   }
 }
 
-
-
-Bathroom.render();
+render();
 imageClicks();
 
 
