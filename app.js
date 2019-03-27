@@ -74,7 +74,7 @@ function imageClicks () {
 function handleClick(event) {
   randomArray[event.target.getAttribute('data-index')].clicks++;
   totalClicks ++;
-  if (totalClicks >= 2) {
+  if (totalClicks >= 25) {
     createText();
     for (var i=0;i<imgTags.length;i++) {
       imgTags[i].removeEventListener('click', handleClick);
