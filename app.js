@@ -1,21 +1,34 @@
 
-function RandomImage (name) {
+function RandomImage (name, src) {
   this.name = name;
   this.clicks = 0;
-  this.src = '/img/' + name + '.jpg';
+  this.src = src;
   this.totalViews = 0;
 }
 
 var totalClicks = 0; 
 
 var randomArray = [
-  new RandomImage('bathroom'),
-  new RandomImage('banana'),
-  new RandomImage('boots'),
-  new RandomImage('breakfast'),
-  new RandomImage('bag'),
-  new RandomImage('bubbleGum'),
-  new RandomImage('chair'),
+  new RandomImage('bathroom', './img/bag.jpg'),
+  new RandomImage('bathroom', './img/bathroom.jpg'),
+  new RandomImage('banana', './img/banana.jpg'),
+  new RandomImage('boots', './img/boots.jpg'),
+  new RandomImage('breakfast', './img/breakfast.jpg'),
+  new RandomImage('bubblegum', './img/bubblegum.jpg'),
+  new RandomImage('chair', './img/cthulhu.jpg'),
+  new RandomImage('chair', './img/chair.jpg'),
+  new RandomImage('dragon', './img/dragon.jpg'),
+  new RandomImage('dragon', './img/dog-duck.jpg'),
+  new RandomImage('pen', './img/pen.jpg'),
+  new RandomImage('pet', './img/pet.jpg'),
+  new RandomImage('scissors', './img/scissors.jpg'),
+  new RandomImage('shark', './img/shark.jpg'),
+  new RandomImage('sweep', './img/sweep.jpg'),
+  new RandomImage('tauntaun', './img/tauntaun.jpg'),
+  new RandomImage('unicorn','./img/unicorn.jpg' ),
+  new RandomImage('gif', './img/usb.gif'),
+  new RandomImage('gif', './img/water-can.jpg'),
+  new RandomImage('gif', './img/wine-glass.jpg')
 ];
 
 function makeRandom(){
@@ -32,6 +45,7 @@ function render() {
   var img1 = document.getElementById('img1');
   img1.setAttribute('data-index', randomNumber1);
   img1.src = randomArray[randomNumber1].src;
+  console.log(img1);
   
   randomArray[randomNumber1].totalViews++;
 
@@ -39,7 +53,7 @@ function render() {
   var img2 = document.getElementById('img2');
   img2.setAttribute('data-index', randomNumber2);
   img2.src = randomArray[randomNumber2].src;
-  
+  console.log(img2);
   var randomNumber3 = makeRandom();
   while (randomNumber3 === randomNumber1 || randomNumber3 === randomNumber2) {
     randomNumber3 = makeRandom();
@@ -60,7 +74,7 @@ function imageClicks () {
 function handleClick(event) {
   randomArray[event.target.getAttribute('data-index')].clicks++;
   totalClicks ++;
-  if (totalClicks >= 10) {
+  if (totalClicks >= 25) {
     createText();
     for (var i=0;i<imgTags.length;i++) {
       imgTags[i].removeEventListener('click', handleClick);
@@ -70,24 +84,69 @@ function handleClick(event) {
   console.log(totalClicks);
 }
 
-
-
-
 function createText() {
-  var unordered = document.createElement('ul');
-  for(var i = 0; i < randomArray.length; i++) {
-    var data = document.createElement('li');
-    data.textContent = randomArray[i].clicks + randomArray[i].name ;
-    unordered.appendChild(data);
-  }
-  document.body.appendChild(unordered);
+  // var unordered = document.createElement('ul');
+  // for(var i = 0; i < randomArray.length; i++) {
+  //   var data = document.createElement('li');
+  //   data.textContent = randomArray[i].clicks + randomArray[i].name ;
+  //   unordered.appendChild(data);
+  // }
+  // document.body.appendChild(unordered);
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: nameArray(),
+      datasets: [{
+        label: '# of Votes',
+        data: clickArray(),
+        backgroundColor: [
+          // 'rgba(255, 99, 132, 0.2)',
+          // 'rgba(54, 162, 235, 0.2)',
+          // 'rgba(255, 206, 86, 0.2)',
+          // 'rgba(75, 192, 192, 0.2)',
+          // 'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}
+
+function nameArray() {
+  var newArray = [];
+  randomArray.forEach(function(RandomImage) {
+    newArray.push(RandomImage.name);
+  })
+  return newArray;
+}
+function clickArray() {
+  var clickArray = [];
+  randomArray.forEach(function(RandomImage) {
+    clickArray.push(RandomImage.clicks);
+  });
+  return clickArray;
 }
 
 render();
 imageClicks();
 
-
-
-
-// var ImgClick = document.getElementsByTagName('img').addEventListener('click', handleClick);
 

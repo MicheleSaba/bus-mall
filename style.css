@@ -1,17 +1,28 @@
-#img {
-    background-color: green; 
-    height: 200px; 
-    width: 200px; 
+body{
+    font-family: 'Montserrat', sans-serif;
 }
+header {
+    text-align: center; 
+    text-transform: capitalize;
+}
+h1 {
+    font-size: 20px; 
+}
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.1); }
+
 img {
-    height: 250px; 
-    width: 250px; 
+    height: 333px; 
+    width: 333px; 
+    margin: 2px; 
 
 }
-img :hover {
-    transform: scale(1.5);
-}
+
 .imageContainer {
+    
     width: 80%;
-    margin: auto;
+    margin: 100px auto auto auto; 
+}
+#myChart {
+    max-width: 100%; 
 }
