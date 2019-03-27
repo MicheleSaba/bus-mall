@@ -4,8 +4,8 @@
     width: 200px; 
 }
 img {
-    height: 250px; 
-    width: 250px; 
+    height: 333px; 
+    width: 333px; 
 
 }
 img :hover {
@@ -14,4 +14,7 @@ img :hover {
 .imageContainer {
     width: 80%;
     margin: auto;
+}
+#myChart {
+    max-width: 100%; 
 }
