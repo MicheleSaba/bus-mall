@@ -1,11 +1,11 @@
-
+//define constructor that will take 2 arguments/parameters? name and src
 function RandomImage (name, src) {
   this.name = name;
   this.clicks = 0;
   this.src = src;
   this.totalViews = 0;
 }
-
+//set a variable to tally all total click and set it to begin at zero. 
 var totalClicks = 0;
 
 var randomArray = [
