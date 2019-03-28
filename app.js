@@ -6,7 +6,7 @@ function RandomImage (name, src) {
   this.totalViews = 0;
 }
 
-var totalClicks = 0; 
+var totalClicks = 0;
 
 var randomArray = [
   new RandomImage('bathroom', './img/bag.jpg'),
@@ -41,12 +41,12 @@ function render() {
   while (randomNumber1 === randomNumber2) {
     randomNumber1 = makeRandom();
   }
- 
+
   var img1 = document.getElementById('img1');
   img1.setAttribute('data-index', randomNumber1);
   img1.src = randomArray[randomNumber1].src;
   console.log(img1);
-  
+
   randomArray[randomNumber1].totalViews++;
 
 
@@ -74,32 +74,44 @@ function imageClicks () {
 function handleClick(event) {
   randomArray[event.target.getAttribute('data-index')].clicks++;
   totalClicks ++;
-  if (totalClicks >= 25) {
-    createText();
+  if (totalClicks >= 5) {
     for (var i=0;i<imgTags.length;i++) {
       imgTags[i].removeEventListener('click', handleClick);
+      localStorage.setItem('completed', JSON.stringify(true));
+      localStorage['data'] = JSON.stringify(randomArray);
+      createText(randomArray);
     }
   }
   render();
   console.log(totalClicks);
 }
 
-function createText() {
-  // var unordered = document.createElement('ul');
-  // for(var i = 0; i < randomArray.length; i++) {
-  //   var data = document.createElement('li');
-  //   data.textContent = randomArray[i].clicks + randomArray[i].name ;
-  //   unordered.appendChild(data);
-  // }
-  // document.body.appendChild(unordered);
+
+
+// randomArray.forEach(function(RandomImage) {
+//   clickArray.push(RandomImage.clicks);
+
+// if (window.localStorage) {
+//   localStorage.setItem('name', JSON.stringify(RandomImage[0].name));
+// }
+function createText(dataArray) {
+
+  var newArray = [];
+  var clickArray = [];
+  
+  dataArray.forEach(function(RandomImage) {
+    newArray.push(RandomImage.name);
+    clickArray.push(RandomImage.clicks);
+  });
+  
   var ctx = document.getElementById('myChart').getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: nameArray(),
+      labels: newArray,
       datasets: [{
         label: '# of Votes',
-        data: clickArray(),
+        data: clickArray,
         backgroundColor: [
           // 'rgba(255, 99, 132, 0.2)',
           // 'rgba(54, 162, 235, 0.2)',
@@ -131,22 +143,16 @@ function createText() {
   });
 }
 
-function nameArray() {
-  var newArray = [];
-  randomArray.forEach(function(RandomImage) {
-    newArray.push(RandomImage.name);
-  })
-  return newArray;
-}
-function clickArray() {
-  var clickArray = [];
-  randomArray.forEach(function(RandomImage) {
-    clickArray.push(RandomImage.clicks);
-  });
-  return clickArray;
+function loadData(){
+  if (localStorage['completed'])
+  {
+    createText(JSON.parse(localStorage['data']));
+  } else {
+    render();
+    imageClicks();
+  }
 }
 
-render();
-imageClicks();
+loadData();
 
 
